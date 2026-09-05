@@ -50,33 +50,52 @@ if (!dest) {
       clearInterval(tick);
 
       title.textContent = "Link pronto";
-      msg.textContent = "Seu script está pronto para copiar.";
+      msg.textContent = "Seu script está pronto.";
 
       btn.disabled = false;
-      btn.textContent = "Copiar Script";
+      btn.textContent = "Carregar Script";
 
       btn.onclick = async () => {
+
+        btn.disabled = true;
+        btn.textContent = "Carregando...";
 
         try {
 
           const response = await fetch(dest);
+
+          if (!response.ok) {
+            throw new Error("Não foi possível carregar o script.");
+          }
+
           const text = await response.text();
 
-          scriptText.value = text;
+          if (!text.trim()) {
+            throw new Error("O script está vazio.");
+          }
 
+          scriptText.value = text;
           scriptBox.style.display = "block";
 
-          await navigator.clipboard.writeText(text);
+          btn.textContent = "Script carregado ✓";
 
-          copyStatus.textContent =
-            "✅ Script copiado!";
+          try {
+            await navigator.clipboard.writeText(text);
+            copyStatus.textContent = "✅ Script copiado!";
+          } catch {
+            copyStatus.textContent =
+              "Script carregado. Clique em 'Copiar Script'.";
+          }
 
         } catch (error) {
 
           scriptBox.style.display = "block";
 
           copyStatus.textContent =
-            "Não foi possível copiar automaticamente.";
+            "❌ Não foi possível carregar o script.";
+
+          btn.disabled = false;
+          btn.textContent = "Tentar novamente";
 
         }
 
@@ -88,20 +107,23 @@ if (!dest) {
 
 }
 
-copyScript.onclick = async () => {
+if (copyScript) {
 
-  try {
+  copyScript.onclick = async () => {
 
-    await navigator.clipboard.writeText(scriptText.value);
+    try {
 
-    copyStatus.textContent =
-      "✅ Script copiado!";
+      await navigator.clipboard.writeText(scriptText.value);
 
-  } catch {
+      copyStatus.textContent = "✅ Script copiado!";
 
-    copyStatus.textContent =
-      "❌ Não foi possível copiar.";
+    } catch {
 
-  }
+      copyStatus.textContent =
+        "❌ Não foi possível copiar.";
 
-};
+    }
+
+  };
+
+}
