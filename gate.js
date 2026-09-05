@@ -1,9 +1,12 @@
 const SCRIPTS = {
-  "script-roube-um-ovo": 'loadstring(game:HttpGet("https://cloverhub.app/clover.lua"))()',
+  "script-roube-um-ovo":
+    'loadstring(game:HttpGet("https://cloverhub.app/clover.lua"))()',
 
-  "blox-fruits": 'loadstring(game:HttpGet("https://example.com"))()',
+  "blox-fruits":
+    'loadstring(game:HttpGet("https://example.com"))()',
 
-  "mm2": 'loadstring(game:HttpGet("https://example.com"))()'
+  "mm2":
+    'loadstring(game:HttpGet("https://example.com"))()'
 };
 
 const params = new URLSearchParams(location.search);
@@ -14,7 +17,6 @@ const title = document.querySelector("#title");
 const msg = document.querySelector("#msg");
 const timer = document.querySelector("#timer");
 const progress = document.querySelector("#progress");
-const btn = document.querySelector("#continue");
 const icon = document.querySelector("#icon");
 
 const scriptBox = document.querySelector("#scriptBox");
@@ -49,17 +51,8 @@ if (!script) {
       title.textContent = "Script pronto";
       msg.textContent = "Seu script está pronto para copiar.";
 
-      btn.disabled = false;
-      btn.textContent = "Mostrar Script";
-
-      btn.onclick = () => {
-
-        scriptText.value = script;
-        scriptBox.style.display = "block";
-
-        btn.textContent = "Script exibido ✓";
-
-      };
+      scriptText.value = script;
+      scriptBox.style.display = "block";
 
     }
 
