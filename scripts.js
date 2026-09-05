@@ -8,14 +8,20 @@ const SCRIPTS = [
     icon: '⚡',link: 'https://raw.githubusercontent.com/Abdullahking20/loader-lua/main/loader'
     
 {
-slug: 'executores',
-name: 'Executores',
-description: 'Escolha seu executor para PC ou Mobile.',
-icon: '⚡',
-direct: true,
-link: '#' <h1>executor mobile</h1>
-
-link: '#' <h1>executor pc</h1>
+  slug: 'executores',
+  name: 'Executores',
+  description: 'Escolha seu executor para PC ou Mobile.',
+  icon: '⚡',
+  buttons: [
+    {
+      name: '📱 Executor Mobile',
+      link: 'https://www.mediafire.com/file/pfn3jfumf35quib/Delta-2.735.1138.apk/file'
+    },
+    {
+      name: '🖥️ Executor PC',
+      link: 'https://realexecutor.com/download.html'
+    }
+  ]
 }
 
 
