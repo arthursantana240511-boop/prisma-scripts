@@ -1,17 +1,14 @@
-const DESTINATIONS = {
-  "script-roube-um-ovo":
-    "https://raw.githubusercontent.com/Abdullahking20/loader-lua/main/loader",
+const SCRIPTS = {
+  "script-roube-um-ovo": 'loadstring(game:HttpGet("https://cloverhub.app/clover.lua"))()',
 
-  "blox-fruits":
-    "https://example.com",
+  "blox-fruits": 'loadstring(game:HttpGet("https://example.com"))()',
 
-  "mm2":
-    "https://example.com"
+  "mm2": 'loadstring(game:HttpGet("https://example.com"))()'
 };
 
 const params = new URLSearchParams(location.search);
 const slug = params.get("to");
-const dest = DESTINATIONS[slug];
+const script = SCRIPTS[slug];
 
 const title = document.querySelector("#title");
 const msg = document.querySelector("#msg");
@@ -25,9 +22,9 @@ const scriptText = document.querySelector("#scriptText");
 const copyScript = document.querySelector("#copyScript");
 const copyStatus = document.querySelector("#copyStatus");
 
-if (!dest) {
+if (!script) {
 
-  title.textContent = "Link não encontrado";
+  title.textContent = "Script não encontrado";
   msg.textContent = "Esse script não existe ou o link está incompleto.";
   timer.textContent = "";
   icon.textContent = "!";
@@ -49,62 +46,24 @@ if (!dest) {
 
       clearInterval(tick);
 
-      title.textContent = "Link pronto";
-      msg.textContent = "Seu script está pronto.";
+      title.textContent = "Script pronto";
+      msg.textContent = "Seu script está pronto para copiar.";
 
       btn.disabled = false;
-      btn.textContent = "Carregar Script";
+      btn.textContent = "Mostrar Script";
 
-      btn.onclick = async () => {
+      btn.onclick = () => {
 
-        btn.disabled = true;
-        btn.textContent = "Carregando...";
+        scriptText.value = script;
+        scriptBox.style.display = "block";
 
-        try {
-
-          const response = await fetch(dest);
-
-          if (!response.ok) {
-            throw new Error("Não foi possível carregar o script.");
-          }
-
-          const text = await response.text();
-
-          if (!text.trim()) {
-            throw new Error("O script está vazio.");
-          }
-
-          scriptText.value = text;
-          scriptBox.style.display = "block";
-
-          btn.textContent = "Script carregado ✓";
-
-          try {
-            await navigator.clipboard.writeText(text);
-            copyStatus.textContent = "✅ Script copiado!";
-          } catch {
-            copyStatus.textContent =
-              "Script carregado. Clique em 'Copiar Script'.";
-          }
-
-        } catch (error) {
-
-          scriptBox.style.display = "block";
-
-          copyStatus.textContent =
-            "❌ Não foi possível carregar o script.";
-
-          btn.disabled = false;
-          btn.textContent = "Tentar novamente";
-
-        }
+        btn.textContent = "Script exibido ✓";
 
       };
 
     }
 
   }, 1000);
-
 }
 
 if (copyScript) {
@@ -119,8 +78,10 @@ if (copyScript) {
 
     } catch {
 
-      copyStatus.textContent =
-        "❌ Não foi possível copiar.";
+      scriptText.select();
+      document.execCommand("copy");
+
+      copyStatus.textContent = "✅ Script copiado!";
 
     }
 
