@@ -1,4 +1,44 @@
- <textarea
+<!doctype html>
+<html lang="pt-BR">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width,initial-scale=1">
+  <title>Obter Script — Prisma Scripts</title>
+  <link rel="stylesheet" href="style.css">
+</head>
+
+<body>
+
+  <main class="gate">
+    <div class="gatecard">
+
+      <a class="logo center" href="index.html">
+        <span>✦</span> PRISMA <b>SCRIPTS</b>
+      </a>
+
+      <div id="icon" class="check">✓</div>
+
+      <div class="pill">LINK PROTEGIDO</div>
+
+      <h1 id="title">Preparando seu link</h1>
+
+      <p id="msg">
+        Aguarde alguns segundos para continuar.
+      </p>
+
+      <div class="bar">
+        <i id="progress"></i>
+      </div>
+
+      <div id="timer" class="timer">5s</div>
+
+      <button id="continue" class="btn full" disabled>
+        Aguarde...
+      </button>
+
+      <div id="scriptBox" style="display:none; margin-top:20px;">
+
+        <textarea
           id="scriptText"
           readonly
           style="width:100%; min-height:120px; resize:none;"
@@ -9,13 +49,17 @@
         </button>
 
         <p id="copyStatus"></p>
+
       </div>
 
-      <a class="back" href="index.html">← Voltar</a>
+      <a class="back" href="index.html">
+        ← Voltar
+      </a>
 
     </div>
   </main>
 
   <script src="gate.js"></script>
+
 </body>
 </html>
