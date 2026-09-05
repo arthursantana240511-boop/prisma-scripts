@@ -40,13 +40,19 @@ year.textContent = new Date().getFullYear();
 if (cards) {
 SCRIPTS.forEach(s => {
 const c = document.createElement('article');
+
 c.className = 'card';
 
 let buttons = '';
 
 if (s.buttons) {
   buttons = s.buttons.map(b => `
-    <a class="btn" href="${b.link}" target="_blank" rel="noopener noreferrer">
+    <a
+      class="btn"
+      href="${b.link}"
+      target="_blank"
+      rel="noopener noreferrer"
+    >
       ${safe(b.name)} <strong>→</strong>
     </a>
   `).join('');
@@ -59,9 +65,12 @@ if (s.buttons) {
 }
 
 c.innerHTML = `
-  <div class="cardicon">${s.icon}</div>
+  <div class="cardicon">${safe(s.icon)}</div>
+
   <h3>${safe(s.name)}</h3>
+
   <p>${safe(s.description)}</p>
+
   ${buttons}
 `;
 
