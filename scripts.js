@@ -5,16 +5,19 @@ const SCRIPTS = [
     slug: 'script-roube-um-ovo',
     name: 'script roube um ovo',
     description: 'Seu primeiro script do Prisma Scripts.',
-    icon: '⚡',
-    link: 'https://raw.githubusercontent.com/Abdullahking20/loader-lua/main/loader'
+    icon: '⚡',link: 'https://raw.githubusercontent.com/Abdullahking20/loader-lua/main/loader'
+    
 {
 slug: 'executores',
 name: 'Executores',
 description: 'Escolha seu executor para PC ou Mobile.',
 icon: '⚡',
 direct: true,
-link: '#'
+link: '#' <h1>executor mobile</h1>
+
+link: '#' <h1>executor pc</h1>
 }
+
 
 const cards = document.querySelector('#cards');
 const count = document.querySelector('#count');
