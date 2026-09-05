@@ -7,24 +7,14 @@ const SCRIPTS = [
     description: 'Seu primeiro script do Prisma Scripts.',
     icon: '⚡',
     link: 'https://raw.githubusercontent.com/Abdullahking20/loader-lua/main/loader'
-  },
-
-  {
-    slug: 'blox-fruits',
-    name: 'Blox Fruits',
-    description: 'Script para seu conteúdo de Blox Fruits.',
-    icon: '◆',
-    link: 'https://example.com'
-  },
-
-  {
-    slug: 'mm2',
-    name: 'Murder Mystery 2',
-    description: 'Adicione aqui a descrição do seu script.',
-    icon: '◈',
-    link: 'https://example.com'
-  }
-];
+{
+slug: 'executores',
+name: 'Executores',
+description: 'Escolha seu executor para PC ou Mobile.',
+icon: '⚡',
+direct: true,
+link: '#'
+}
 
 const cards = document.querySelector('#cards');
 const count = document.querySelector('#count');
