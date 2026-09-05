@@ -1,6 +1,6 @@
 /* O slug abaixo precisa existir em DESTINATIONS. */
 const DESTINATIONS={
- delta:'https://raw.githubusercontent.com/Abdullahking20/loader-lua/main/loader',
+ script roube um ovo:'https://raw.githubusercontent.com/Abdullahking20/loader-lua/main/loader',
  'blox-fruits':'https://example.com',
  mm2:'https://example.com'
 };
