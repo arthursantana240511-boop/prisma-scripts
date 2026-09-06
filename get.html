@@ -5,42 +5,81 @@
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width,initial-scale=1">
 
-  <title>Obter Script — Prisma Scripts</title>
+  <title>Prisma Scripts — Obter Script</title>
 
   <link rel="stylesheet" href="style.css">
 
   <style>
+
+    * {
+      box-sizing: border-box;
+    }
+
     body {
       background:
         radial-gradient(
-          circle at 50% -20%,
-          rgba(139, 92, 246, .18),
-          transparent 45%
+          circle at 50% 0%,
+          rgba(139,92,246,.20),
+          transparent 38%
         ),
         #07070b;
     }
 
-    .gate {
+    /* FUNDO */
+
+    .gate-page {
       min-height: calc(100vh - 80px);
       display: flex;
-      align-items: center;
       justify-content: center;
-      padding: 40px 16px;
+      align-items: center;
+      padding: 45px 18px;
+    }
+
+
+    /* CARD PRINCIPAL */
+
+    .gate-container {
+      width: min(620px, 100%);
+      position: relative;
     }
 
     .gate-card {
-      width: min(560px, 100%);
-      padding: 34px;
-      background: rgba(255,255,255,.035);
-      border: 1px solid rgba(255,255,255,.08);
-      border-radius: 24px;
-      box-shadow: 0 25px 80px rgba(0,0,0,.45);
-      text-align: center;
+      position: relative;
+      padding: 42px;
+      background:
+        linear-gradient(
+          145deg,
+          rgba(255,255,255,.055),
+          rgba(255,255,255,.018)
+        );
+      border: 1px solid rgba(255,255,255,.09);
+      border-radius: 26px;
+      box-shadow:
+        0 30px 100px rgba(0,0,0,.55);
+      overflow: hidden;
     }
 
+    .gate-card::before {
+      content: "";
+      position: absolute;
+      width: 220px;
+      height: 220px;
+      top: -130px;
+      left: 50%;
+      transform: translateX(-50%);
+      background: #8b5cf6;
+      filter: blur(100px);
+      opacity: .13;
+      pointer-events: none;
+    }
+
+
+    /* LOGO */
+
     .gate-logo {
-      display: inline-block;
-      margin-bottom: 28px;
+      display: block;
+      text-align: center;
+      margin-bottom: 35px;
     }
 
     .gate-logo span,
@@ -48,226 +87,501 @@
       color: #a78bfa;
     }
 
-    .gate-icon {
-      width: 68px;
-      height: 68px;
-      margin: 0 auto 20px;
+
+    /* ÍCONE */
+
+    .status-icon {
+      width: 82px;
+      height: 82px;
+
+      margin: 0 auto 22px;
+
       display: grid;
       place-items: center;
-      border-radius: 20px;
-      background: rgba(139,92,246,.13);
-      border: 1px solid rgba(139,92,246,.25);
+
+      border-radius: 24px;
+
+      background:
+        linear-gradient(
+          145deg,
+          rgba(139,92,246,.20),
+          rgba(139,92,246,.06)
+        );
+
+      border: 1px solid rgba(167,139,250,.25);
+
       color: #b9a5ff;
-      font-size: 30px;
+
+      font-size: 34px;
+
+      box-shadow:
+        0 0 45px rgba(139,92,246,.10);
+
+      animation: pulse 2s infinite;
     }
 
-    .gate-pill {
-      display: inline-block;
-      padding: 7px 12px;
-      border-radius: 100px;
-      color: #b9a5ff;
-      background: rgba(139,92,246,.08);
-      border: 1px solid rgba(167,139,250,.25);
-      font-size: 10px;
-      font-weight: 800;
-      letter-spacing: 1.5px;
-      margin-bottom: 16px;
+    @keyframes pulse {
+
+      0%,100% {
+        transform: scale(1);
+        box-shadow:
+          0 0 35px rgba(139,92,246,.08);
+      }
+
+      50% {
+        transform: scale(1.04);
+        box-shadow:
+          0 0 55px rgba(139,92,246,.18);
+      }
+
     }
+
+
+    /* BADGE */
+
+    .status-badge {
+      width: fit-content;
+      margin: 0 auto 15px;
+
+      padding: 7px 12px;
+
+      border-radius: 100px;
+
+      background: rgba(139,92,246,.09);
+
+      border: 1px solid rgba(167,139,250,.25);
+
+      color: #b9a5ff;
+
+      font-size: 10px;
+
+      font-weight: 800;
+
+      letter-spacing: 1.5px;
+    }
+
+
+    /* TÍTULO */
 
     .gate-card h1 {
-      font-size: 28px;
-      margin-bottom: 10px;
+      text-align: center;
+
+      font-size: 30px;
+
+      letter-spacing: -.7px;
+
+      margin-bottom: 12px;
     }
 
-    .gate-card > p {
+    .gate-description {
+      text-align: center;
+
       color: #858591;
+
       font-size: 14px;
-      line-height: 1.6;
+
+      line-height: 1.7;
+
+      max-width: 440px;
+
+      margin: auto;
     }
 
-    .progress-box {
-      height: 8px;
-      margin-top: 28px;
-      background: rgba(255,255,255,.06);
+
+    /* STATUS */
+
+    .status-area {
+      margin-top: 30px;
+
+      padding: 18px;
+
+      border-radius: 15px;
+
+      background: rgba(0,0,0,.20);
+
+      border: 1px solid rgba(255,255,255,.055);
+    }
+
+    .status-top {
+      display: flex;
+
+      justify-content: space-between;
+
+      align-items: center;
+
+      margin-bottom: 11px;
+    }
+
+    .status-top span:first-child {
+      color: #777784;
+
+      font-size: 11px;
+
+      font-weight: 700;
+
+      letter-spacing: 1px;
+    }
+
+    #timer {
+      color: #b9a5ff;
+
+      font-size: 12px;
+
+      font-weight: 800;
+    }
+
+
+    /* BARRA */
+
+    .progress-track {
+      height: 7px;
+
+      background: rgba(255,255,255,.055);
+
       border-radius: 100px;
+
       overflow: hidden;
     }
 
     #progress {
       display: block;
+
       width: 0%;
+
       height: 100%;
-      background: #8b5cf6;
+
       border-radius: inherit;
+
+      background:
+        linear-gradient(
+          90deg,
+          #6d28d9,
+          #a78bfa
+        );
+
+      box-shadow:
+        0 0 18px rgba(139,92,246,.35);
+
       transition: width .5s ease;
     }
 
-    #timer {
-      margin-top: 14px;
-      color: #a78bfa;
-      font-size: 13px;
-      font-weight: 700;
-    }
+
+    /* SCRIPT LIBERADO */
 
     #scriptBox {
       display: none;
-      margin-top: 26px;
-      text-align: left;
+
+      margin-top: 28px;
+
+      padding: 20px;
+
+      background: rgba(0,0,0,.25);
+
+      border: 1px solid rgba(139,92,246,.18);
+
+      border-radius: 17px;
     }
 
-    .script-label {
-      color: #a78bfa;
-      font-size: 10px;
+    .script-header {
+      display: flex;
+
+      justify-content: space-between;
+
+      align-items: center;
+
+      margin-bottom: 12px;
+    }
+
+    .script-title {
+      color: #fff;
+
+      font-size: 12px;
+
       font-weight: 800;
-      letter-spacing: 1.5px;
-      margin-bottom: 9px;
-      display: block;
+
+      letter-spacing: 1px;
+    }
+
+    .script-status {
+      color: #9b7aff;
+
+      font-size: 10px;
+
+      font-weight: 800;
+
+      letter-spacing: 1px;
     }
 
     #scriptText {
       width: 100%;
-      min-height: 130px;
+
+      min-height: 125px;
+
       padding: 15px;
+
       resize: none;
+
       outline: none;
-      color: #ddd;
+
+      color: #bdbdc8;
+
       background: #050507;
-      border: 1px solid rgba(255,255,255,.08);
-      border-radius: 13px;
+
+      border: 1px solid rgba(255,255,255,.07);
+
+      border-radius: 12px;
+
       font-family: Consolas, monospace;
+
       font-size: 12px;
+
+      line-height: 1.6;
     }
+
+
+    /* BOTÃO COPIAR */
 
     #copyScript {
       width: 100%;
-      margin-top: 10px;
-      padding: 14px;
+
+      margin-top: 12px;
+
+      padding: 15px;
+
       border: 0;
+
       border-radius: 12px;
+
       background: #8b5cf6;
-      color: white;
+
+      color: #fff;
+
+      font-size: 13px;
+
       font-weight: 800;
+
       cursor: pointer;
-      transition: .2s;
+
+      transition: .25s;
     }
 
     #copyScript:hover {
       transform: translateY(-2px);
-      box-shadow: 0 12px 30px rgba(139,92,246,.25);
+
+      box-shadow:
+        0 12px 35px rgba(139,92,246,.30);
+    }
+
+    #copyScript.copied {
+      background: #6d28d9;
     }
 
     #copyStatus {
+      min-height: 17px;
+
+      margin-top: 9px;
+
       text-align: center;
-      margin-top: 10px;
-      color: #9b7aff;
-      font-size: 12px;
+
+      color: #a78bfa;
+
+      font-size: 11px;
     }
 
-    .back-link {
-      display: inline-block;
-      margin-top: 25px;
+
+    /* VOLTAR */
+
+    .back-button {
+      display: block;
+
+      width: fit-content;
+
+      margin: 25px auto 0;
+
       color: #777784;
-      font-size: 13px;
+
+      font-size: 12px;
+
       transition: .2s;
     }
 
-    .back-link:hover {
-      color: white;
+    .back-button:hover {
+      color: #fff;
     }
 
+
+    /* MOBILE */
+
     @media (max-width: 600px) {
+
+      .gate-page {
+        padding: 25px 14px;
+      }
+
       .gate-card {
-        padding: 25px 18px;
+        padding: 30px 18px;
+        border-radius: 22px;
       }
 
       .gate-card h1 {
-        font-size: 24px;
+        font-size: 25px;
       }
+
+      .status-icon {
+        width: 70px;
+        height: 70px;
+        font-size: 28px;
+      }
+
     }
+
   </style>
 </head>
 
+
 <body>
+
+  <!-- NAV -->
 
   <nav>
 
     <a href="index.html" class="logo">
-      <span>✦</span> PRISMA <b>SCRIPTS</b>
+      <span>✦</span>
+      PRISMA <b>SCRIPTS</b>
     </a>
 
     <div class="nav-links">
-      <a href="index.html#scripts">Scripts</a>
-      <a href="index.html#executores">Executores</a>
-      <a href="index.html#updates">Updates</a>
+
+      <a href="index.html#scripts">
+        Scripts
+      </a>
+
+      <a href="index.html#executores">
+        Executores
+      </a>
+
+      <a href="index.html#updates">
+        Updates
+      </a>
+
     </div>
 
   </nav>
 
 
-  <main class="gate">
+  <!-- PÁGINA -->
 
-    <div class="gate-card">
+  <main class="gate-page">
 
-      <a href="index.html" class="logo gate-logo">
-        <span>✦</span> PRISMA <b>SCRIPTS</b>
-      </a>
+    <div class="gate-container">
+
+      <div class="gate-card">
 
 
-      <div id="icon" class="gate-icon">
-        ⚡
+        <!-- LOGO -->
+
+        <a href="index.html" class="logo gate-logo">
+          <span>✦</span>
+          PRISMA <b>SCRIPTS</b>
+        </a>
+
+
+        <!-- ÍCONE -->
+
+        <div id="icon" class="status-icon">
+          ⚡
+        </div>
+
+
+        <!-- BADGE -->
+
+        <div class="status-badge">
+          PRISMA GATE
+        </div>
+
+
+        <!-- TÍTULO -->
+
+        <h1 id="title">
+          Preparando seu script
+        </h1>
+
+
+        <p id="msg" class="gate-description">
+          Aguarde alguns segundos enquanto
+          preparamos seu acesso.
+        </p>
+
+
+        <!-- STATUS -->
+
+        <div class="status-area">
+
+          <div class="status-top">
+
+            <span>
+              STATUS DO ACESSO
+            </span>
+
+            <span id="timer">
+              5s
+            </span>
+
+          </div>
+
+
+          <div class="progress-track">
+
+            <i id="progress"></i>
+
+          </div>
+
+        </div>
+
+
+        <!-- SCRIPT -->
+
+        <div id="scriptBox">
+
+          <div class="script-header">
+
+            <span class="script-title">
+              SCRIPT LIBERADO
+            </span>
+
+            <span class="script-status">
+              ● ONLINE
+            </span>
+
+          </div>
+
+
+          <textarea
+            id="scriptText"
+            readonly
+          ></textarea>
+
+
+          <button id="copyScript">
+            📋 &nbsp; COPIAR SCRIPT
+          </button>
+
+
+          <p id="copyStatus"></p>
+
+        </div>
+
+
+        <!-- VOLTAR -->
+
+        <a
+          href="index.html"
+          class="back-button"
+        >
+          ← Voltar para a biblioteca
+        </a>
+
       </div>
-
-
-      <div class="gate-pill">
-        LINK PROTEGIDO
-      </div>
-
-
-      <h1 id="title">
-        Preparando seu script
-      </h1>
-
-
-      <p id="msg">
-        Aguarde alguns segundos para liberar o acesso.
-      </p>
-
-
-      <div class="progress-box">
-        <i id="progress"></i>
-      </div>
-
-
-      <div id="timer">
-        5s
-      </div>
-
-
-      <!-- SCRIPT LIBERADO -->
-
-      <div id="scriptBox">
-
-        <span class="script-label">
-          PRISMA SCRIPT
-        </span>
-
-        <textarea
-          id="scriptText"
-          readonly
-        ></textarea>
-
-        <button id="copyScript">
-          📋 Copiar Script
-        </button>
-
-        <p id="copyStatus"></p>
-
-      </div>
-
-
-      <a href="index.html" class="back-link">
-        ← Voltar para a biblioteca
-      </a>
 
     </div>
 
