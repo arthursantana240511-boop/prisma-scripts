@@ -3,19 +3,7 @@ const SCRIPTS = [
     slug: "script-roube-um-ovo",
     name: "Script Roube um Ovo",
     description: "Script para Roube um Ovo.",
-    icon: "⚡",
-    category: "Roblox"
-  }
-];
-
-const EXECUTORES = [
-  {
-    name: "📱 Executor Mobile",
-    link: "https://www.mediafire.com/file/pfn3jfumf35quib/Delta-2.735.1138.apk/file"
-  },
-  {
-    name: "🖥️ Executor PC",
-    link: "https://realexecutor.com/download.html"
+    icon: "⚡"
   }
 ];
 
@@ -24,32 +12,36 @@ const count = document.getElementById("count");
 const year = document.getElementById("year");
 const search = document.getElementById("search");
 
-year.textContent = new Date().getFullYear();
+if (year) {
+  year.textContent = new Date().getFullYear();
+}
 
-function renderScripts(list) {
+function mostrarScripts(lista) {
+
+  if (!cards) return;
 
   cards.innerHTML = "";
 
-  count.textContent = list.length + " scripts";
+  if (count) {
+    count.textContent = lista.length + " scripts";
+  }
 
-  if (list.length === 0) {
+  if (lista.length === 0) {
 
     cards.innerHTML = `
       <div style="
         grid-column: 1 / -1;
-        padding: 50px 20px;
         text-align: center;
+        padding: 50px 20px;
         color: #777783;
       ">
-        <div style="font-size: 35px; margin-bottom: 12px;">
-          🔎
-        </div>
+        <div style="font-size: 40px;">🔎</div>
 
-        <strong style="color:white;">
+        <h3 style="margin-top: 10px; color: white;">
           Nenhum script encontrado
-        </strong>
+        </h3>
 
-        <p style="margin-top:8px;">
+        <p style="margin-top: 8px;">
           Tente pesquisar outro nome.
         </p>
       </div>
@@ -58,7 +50,7 @@ function renderScripts(list) {
     return;
   }
 
-  list.forEach(function(script) {
+  lista.forEach(function(script) {
 
     const card = document.createElement("article");
 
@@ -69,17 +61,13 @@ function renderScripts(list) {
         ${script.icon}
       </div>
 
-      <h3>
-        ${script.name}
-      </h3>
+      <h3>${script.name}</h3>
 
-      <p>
-        ${script.description}
-      </p>
+      <p>${script.description}</p>
 
       <a
         class="btn"
-        href="get.html?to=${encodeURIComponent(script.slug)}"
+        href="get.html?to=${script.slug}"
       >
         Obter Script
         <strong>→</strong>
@@ -89,10 +77,9 @@ function renderScripts(list) {
     cards.appendChild(card);
 
   });
-
 }
 
-renderScripts(SCRIPTS);
+mostrarScripts(SCRIPTS);
 
 
 /* PESQUISA */
@@ -101,20 +88,17 @@ if (search) {
 
   search.addEventListener("input", function() {
 
-    const text = search.value
-      .toLowerCase()
-      .trim();
+    const texto = search.value.toLowerCase().trim();
 
-    const filtered = SCRIPTS.filter(function(script) {
+    const resultados = SCRIPTS.filter(function(script) {
 
-      return (
-        script.name.toLowerCase().includes(text) ||
-        script.description.toLowerCase().includes(text)
-      );
+      return script.name
+        .toLowerCase()
+        .includes(texto);
 
     });
 
-    renderScripts(filtered);
+    mostrarScripts(resultados);
 
   });
 
