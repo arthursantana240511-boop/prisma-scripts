@@ -1,229 +1,142 @@
-<!doctype html>
+<!DOCTYPE html>
 <html lang="pt-BR">
-
 <head>
-  <meta charset="utf-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1">
-
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Prisma Scripts</title>
 
-  <link rel="stylesheet" href="style.css">
+  <style>
+    body {
+      margin: 0;
+      background: #07070b;
+      color: white;
+      font-family: Arial, sans-serif;
+      padding: 30px;
+    }
+
+    h1 {
+      text-align: center;
+      color: #a78bfa;
+    }
+
+    .search {
+      max-width: 600px;
+      margin: 30px auto;
+    }
+
+    input {
+      width: 100%;
+      padding: 16px;
+      box-sizing: border-box;
+      background: #111116;
+      border: 1px solid #333;
+      border-radius: 10px;
+      color: white;
+      outline: none;
+    }
+
+    .card {
+      max-width: 600px;
+      margin: 20px auto;
+      padding: 25px;
+      background: #111116;
+      border: 1px solid #292932;
+      border-radius: 15px;
+    }
+
+    button, .download {
+      display: inline-block;
+      padding: 12px 18px;
+      margin-top: 10px;
+      background: #8b5cf6;
+      color: white;
+      border: 0;
+      border-radius: 8px;
+      text-decoration: none;
+      cursor: pointer;
+    }
+
+    .executor {
+      margin-top: 50px;
+    }
+  </style>
 </head>
 
 <body>
 
-  <div class="glow glow-1"></div>
-  <div class="glow glow-2"></div>
+  <h1>✦ PRISMA SCRIPTS</h1>
 
-  <!-- MENU -->
+  <div class="search">
+    <input
+      id="search"
+      type="text"
+      placeholder="Pesquisar scripts..."
+    >
+  </div>
 
-  <nav>
+  <div id="scripts">
 
-    <a class="logo" href="index.html">
-      <span>✦</span> PRISMA <b>SCRIPTS</b>
-    </a>
-
-    <div class="nav-links">
-      <a href="#scripts">Scripts</a>
-      <a href="#executores">Executores</a>
-      <a href="#updates">Updates</a>
+    <div class="card">
+      <h2>⚡ Script Roube um Ovo</h2>
+      <p>Script para Roube um Ovo.</p>
+      <a class="download" href="get.html?to=script-roube-um-ovo">
+        Obter Script →
+      </a>
     </div>
 
-  </nav>
+  </div>
 
+  <!-- EXECUTORES -->
 
-  <main>
+  <div class="card executor">
 
-    <!-- HERO -->
+    <h2>⚡ Executores</h2>
 
-    <section class="hero">
+    <p>
+      Escolha o executor compatível com seu dispositivo.
+    </p>
 
-      <div class="pill">
-        ✦ PRISMA LIBRARY
-      </div>
+    <a
+      class="download"
+      href="https://www.mediafire.com/file/pfn3jfumf35quib/Delta-2.735.1138.apk/file"
+      target="_blank"
+    >
+      📱 Mobile
+    </a>
 
-      <h1>
-        SCRIPTS<br>
-        <em>SEM LIMITES.</em>
-      </h1>
+    <a
+      class="download"
+      href="https://realexecutor.com/download.html"
+      target="_blank"
+    >
+      🖥️ PC
+    </a>
 
-      <p>
-        Encontre scripts, executores e recursos
-        para Roblox em um só lugar.
-      </p>
+  </div>
 
-      <a class="main-btn" href="#scripts">
-        Explorar biblioteca
-        <strong>→</strong>
-      </a>
+  <script>
 
-    </section>
+    const pesquisa = document.getElementById("search");
+    const scripts = document.getElementById("scripts");
 
+    pesquisa.addEventListener("input", function() {
 
-    <!-- PESQUISA -->
+      const texto = pesquisa.value.toLowerCase();
 
-    <section class="search-area">
+      const script = scripts.querySelector(".card");
 
-      <div class="search-box">
+      if (script) {
 
-        <span>⌕</span>
+        const nome = script.innerText.toLowerCase();
 
-        <input
-          id="search"
-          type="text"
-          placeholder="Pesquisar scripts..."
-          autocomplete="off"
-        >
+        script.style.display =
+          nome.includes(texto) ? "block" : "none";
 
-      </div>
+      }
 
-    </section>
+    });
 
+  </script>
 
-    <!-- CATEGORIAS -->
-
-    <section class="categories">
-
-      <button class="category active">
-        Todos
-      </button>
-
-      <button class="category">
-        Roblox
-      </button>
-
-      <button class="category">
-        Executores
-      </button>
-
-      <button class="category">
-        Utilidades
-      </button>
-
-    </section>
-
-
-    <!-- SCRIPTS -->
-
-    <section id="scripts" class="wrap">
-
-      <div class="heading">
-
-        <div>
-
-          <small>PRISMA LIBRARY</small>
-
-          <h2>
-            Scripts disponíveis
-          </h2>
-
-        </div>
-
-        <span id="count"></span>
-
-      </div>
-
-      <div id="cards" class="grid"></div>
-
-    </section>
-
-
-    <!-- EXECUTORES -->
-
-    <section id="executores" class="feature">
-
-      <div class="feature-icon">
-        ⚡
-      </div>
-
-      <div class="feature-info">
-
-        <small>PRISMA TOOLS</small>
-
-        <h2>
-          Executores
-        </h2>
-
-        <p>
-          Escolha o executor compatível com
-          seu dispositivo.
-        </p>
-
-      </div>
-
-      <div class="executor-buttons">
-
-        <a
-          href="https://www.mediafire.com/file/pfn3jfumf35quib/Delta-2.735.1138.apk/file"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          📱 Mobile
-        </a>
-
-        <a
-          href="https://realexecutor.com/download.html"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          🖥️ PC
-        </a>
-
-      </div>
-
-    </section>
-
-
-    <!-- UPDATES -->
-
-    <section id="updates" class="updates">
-
-      <div class="heading">
-
-        <div>
-
-          <small>PRISMA UPDATE</small>
-
-          <h2>
-            Últimas novidades
-          </h2>
-
-        </div>
-
-      </div>
-
-
-      <div class="update-card">
-
-        <span>
-          ✦
-        </span>
-
-        <div>
-
-          <strong>
-            Prisma Scripts
-          </strong>
-
-          <p>
-            Nova interface da biblioteca chegando.
-          </p>
-
-        </div>
-
-        <time>
-          2026
-        </time>
-
-      </div>
-
-    </section>
-
-  </main>
-
-
-  <!-- RODAPÉ -->
-
-  <footer>
-
-    © <span id="year
+</body>
+</html>
