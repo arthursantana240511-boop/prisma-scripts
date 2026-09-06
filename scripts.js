@@ -6,15 +6,31 @@ const SCRIPTS = [
     icon: "⚡"
   }
 ];
+const SCRIPTS = [
+  {
+    slug: "script-roube-um-ovo",
+    name: "Script Roube um Ovo",
+    description: "Script para Roube um Ovo. Atualizado e pronto para usar.",
+    icon: "⚡"
+  }
+];
 
 const cards = document.getElementById("cards");
 const count = document.getElementById("count");
 const year = document.getElementById("year");
 const search = document.getElementById("search");
 
+const executorSection = document.getElementById("executores");
+
+
+/* ANO */
+
 if (year) {
   year.textContent = new Date().getFullYear();
 }
+
+
+/* MOSTRAR SCRIPTS */
 
 function mostrarScripts(lista) {
 
@@ -24,32 +40,38 @@ function mostrarScripts(lista) {
 
   if (count) {
     count.textContent =
-      lista.length + (lista.length === 1 ? " script" : " scripts");
+      lista.length +
+      (lista.length === 1 ? " script" : " scripts");
   }
+
+
+  /* NENHUM RESULTADO */
 
   if (lista.length === 0) {
 
     cards.innerHTML = `
-      <div style="
-        grid-column:1/-1;
-        text-align:center;
-        padding:50px 20px;
-        color:#777783;
-      ">
-        <div style="font-size:40px;">🔎</div>
+      <div class="no-results">
 
-        <h3 style="margin-top:10px;color:white;">
-          Nenhum script encontrado
+        <div class="no-results-icon">
+          🔎
+        </div>
+
+        <h3>
+          Nenhum resultado encontrado
         </h3>
 
-        <p style="margin-top:8px;">
-          Tente pesquisar outro nome.
+        <p>
+          Tente pesquisar outro nome ou palavra.
         </p>
+
       </div>
     `;
 
     return;
   }
+
+
+  /* CRIAR CARDS */
 
   lista.forEach(function(script) {
 
@@ -58,30 +80,49 @@ function mostrarScripts(lista) {
     card.className = "card";
 
     card.innerHTML = `
+      
       <div class="cardicon">
         ${script.icon}
       </div>
 
-      <h3>${script.name}</h3>
+      <div class="status">
+        ● ATIVO
+      </div>
 
-      <p>${script.description}</p>
+      <h3>
+        ${script.name}
+      </h3>
 
-      <a
-        class="btn"
-        href="get.html?to=${encodeURIComponent(script.slug)}"
-      >
-        Obter Script
-        <strong>→</strong>
-      </a>
+      <p>
+        ${script.description}
+      </p>
+
+      <div class="card-bottom">
+
+        <span class="tag">
+          ROBLOX
+        </span>
+
+        <a
+          class="btn"
+          href="get.html?to=${encodeURIComponent(script.slug)}"
+        >
+          Obter Script
+          <strong>→</strong>
+        </a>
+
+      </div>
+
     `;
 
     cards.appendChild(card);
 
   });
+
 }
 
 
-/* MOSTRAR SCRIPTS */
+/* MOSTRAR TUDO AO ABRIR */
 
 mostrarScripts(SCRIPTS);
 
@@ -96,6 +137,23 @@ if (search) {
       .toLowerCase()
       .trim();
 
+
+    /* CAMPO VAZIO */
+
+    if (texto === "") {
+
+      mostrarScripts(SCRIPTS);
+
+      if (executorSection) {
+        executorSection.style.display = "flex";
+      }
+
+      return;
+    }
+
+
+    /* PESQUISAR SCRIPTS */
+
     const resultados = SCRIPTS.filter(function(script) {
 
       return (
@@ -105,7 +163,51 @@ if (search) {
 
     });
 
+
+    /* PALAVRAS RELACIONADAS AO EXECUTOR */
+
+    const palavrasExecutor = [
+      "executor",
+      "executores",
+      "delta",
+      "mobile",
+      "pc",
+      "computador",
+      "celular",
+      "android",
+      "windows",
+      "download"
+    ];
+
+
+    const encontrouExecutor = palavrasExecutor.some(function(palavra) {
+
+      return palavra.includes(texto) ||
+             texto.includes(palavra);
+
+    });
+
+
+    /* RESULTADO DA PESQUISA */
+
     mostrarScripts(resultados);
+
+
+    /* CONTROLAR EXECUTOR */
+
+    if (executorSection) {
+
+      if (encontrouExecutor) {
+
+        executorSection.style.display = "flex";
+
+      } else {
+
+        executorSection.style.display = "none";
+
+      }
+
+    }
 
   });
 
