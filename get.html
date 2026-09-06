@@ -1,65 +1,162 @@
 <!doctype html>
 <html lang="pt-BR">
+
 <head>
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width,initial-scale=1">
+
   <title>Obter Script — Prisma Scripts</title>
+
   <link rel="stylesheet" href="style.css">
 </head>
 
 <body>
 
+  <div class="glow glow-1"></div>
+  <div class="glow glow-2"></div>
+
   <main class="gate">
+
     <div class="gatecard">
 
+      <!-- LOGO -->
+
       <a class="logo center" href="index.html">
-        <span>✦</span> PRISMA <b>SCRIPTS</b>
+        <span>✦</span>
+        PRISMA <b>SCRIPTS</b>
       </a>
 
-      <div id="icon" class="check">✓</div>
 
-      <div class="pill">LINK PROTEGIDO</div>
+      <!-- ÍCONE -->
 
-      <h1 id="title">Preparando seu link</h1>
+      <div id="icon" class="gate-icon">
+        ✓
+      </div>
+
+
+      <!-- STATUS -->
+
+      <div class="gate-status">
+        <span></span>
+        LINK PROTEGIDO
+      </div>
+
+
+      <!-- TÍTULO -->
+
+      <h1 id="title">
+        Preparando seu script
+      </h1>
+
 
       <p id="msg">
-        Aguarde alguns segundos para continuar.
+        Aguarde alguns segundos para liberar seu script.
       </p>
 
-      <div class="bar">
-        <i id="progress"></i>
+
+      <!-- PROGRESSO -->
+
+      <div class="gate-progress">
+
+        <div class="gate-progress-bar">
+          <i id="progress"></i>
+        </div>
+
       </div>
 
-      <div id="timer" class="timer">5s</div>
 
-     <button id="continue" class="btn full" disabled style="display:none;">
-  Aguarde...
-</button>
+      <!-- CONTADOR -->
 
-      <div id="scriptBox" style="display:none; margin-top:20px;">
+      <div id="timer" class="gate-timer">
+        5s
+      </div>
 
-        <textarea
-          id="scriptText"
-          readonly
-          style="width:100%; min-height:120px; resize:none;"
-        ></textarea>
 
-        <button id="copyScript" class="btn full" style="margin-top:10px;">
-          📋 Copiar Script
+      <!-- BOTÃO -->
+
+      <button
+        id="continue"
+        class="btn full gate-continue"
+        disabled
+        style="display:none;"
+      >
+        Aguarde...
+      </button>
+
+
+      <!-- SCRIPT -->
+
+      <div id="scriptBox" class="script-result">
+
+        <div class="script-result-header">
+
+          <div>
+            <small>PRISMA SCRIPT</small>
+
+            <strong>
+              Seu script está pronto
+            </strong>
+          </div>
+
+          <span>
+            ✓
+          </span>
+
+        </div>
+
+
+        <div class="code-box">
+
+          <div class="code-top">
+
+            <span></span>
+            <span></span>
+            <span></span>
+
+            <small>
+              SCRIPT.LUA
+            </small>
+
+          </div>
+
+          <textarea
+            id="scriptText"
+            readonly
+          ></textarea>
+
+        </div>
+
+
+        <button
+          id="copyScript"
+          class="btn full copy-button"
+        >
+          <span>📋</span>
+          Copiar Script
         </button>
 
-        <p id="copyStatus"></p>
+
+        <p
+          id="copyStatus"
+          class="copy-status"
+        ></p>
 
       </div>
 
+
+      <!-- VOLTAR -->
+
       <a class="back" href="index.html">
-        ← Voltar
+        ← Voltar para Prisma Scripts
       </a>
 
     </div>
+
   </main>
+
 
   <script src="gate.js"></script>
 
 </body>
+
 </html>
