@@ -2,7 +2,7 @@ const SCRIPTS = [
   {
     slug: "script-roube-um-ovo",
     name: "Script Roube um Ovo",
-    description: "Script para Roube um Ovo.",
+    description: "Script para Roube um Ovo. Atualizado e pronto para usar.",
     icon: "⚡"
   }
 ];
@@ -12,14 +12,9 @@ const count = document.getElementById("count");
 const year = document.getElementById("year");
 const search = document.getElementById("search");
 
-/* ANO */
-
 if (year) {
   year.textContent = new Date().getFullYear();
 }
-
-
-/* MOSTRAR SCRIPTS */
 
 function mostrarScripts(lista) {
 
@@ -28,19 +23,19 @@ function mostrarScripts(lista) {
   cards.innerHTML = "";
 
   if (count) {
-    count.textContent = lista.length + " scripts";
+    count.textContent =
+      lista.length + (lista.length === 1 ? " script" : " scripts");
   }
 
   if (lista.length === 0) {
 
     cards.innerHTML = `
       <div style="
-        grid-column: 1 / -1;
-        text-align: center;
-        padding: 50px 20px;
-        color: #777783;
+        grid-column:1/-1;
+        text-align:center;
+        padding:50px 20px;
+        color:#777783;
       ">
-
         <div style="font-size:40px;">🔎</div>
 
         <h3 style="margin-top:10px;color:white;">
@@ -50,7 +45,6 @@ function mostrarScripts(lista) {
         <p style="margin-top:8px;">
           Tente pesquisar outro nome.
         </p>
-
       </div>
     `;
 
@@ -87,7 +81,7 @@ function mostrarScripts(lista) {
 }
 
 
-/* MOSTRAR INICIALMENTE */
+/* MOSTRAR SCRIPTS */
 
 mostrarScripts(SCRIPTS);
 
@@ -116,36 +110,3 @@ if (search) {
   });
 
 }
-
-
-/* CATEGORIAS */
-
-const categorias = document.querySelectorAll(".category");
-
-categorias.forEach(function(botao) {
-
-  botao.addEventListener("click", function() {
-
-    categorias.forEach(function(b) {
-      b.classList.remove("active");
-    });
-
-    botao.classList.add("active");
-
-    const categoria = botao.textContent
-      .toLowerCase()
-      .trim();
-
-    if (categoria === "todos" || categoria === "roblox") {
-
-      mostrarScripts(SCRIPTS);
-
-    } else {
-
-      mostrarScripts([]);
-
-    }
-
-  });
-
-});
