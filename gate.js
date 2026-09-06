@@ -1,60 +1,55 @@
 const SCRIPTS = {
   "script-roube-um-ovo":
-    'loadstring(game:HttpGet("https://cloverhub.app/clover.lua"))()',
-
-  "blox-fruits":
-    'loadstring(game:HttpGet("https://example.com"))()',
-
-  "mm2":
-    'loadstring(game:HttpGet("https://example.com"))()'
+    'loadstring(game:HttpGet("https://cloverhub.app/clover.lua"))()'
 };
 
-
-/* PEGAR SCRIPT */
-
-const params = new URLSearchParams(location.search);
+const params = new URLSearchParams(window.location.search);
 const slug = params.get("to");
 const script = SCRIPTS[slug];
 
+const title = document.getElementById("title");
+const msg = document.getElementById("msg");
+const timer = document.getElementById("timer");
+const progress = document.getElementById("progress");
+const icon = document.getElementById("icon");
 
-/* ELEMENTOS */
-
-const title = document.querySelector("#title");
-const msg = document.querySelector("#msg");
-const timer = document.querySelector("#timer");
-const progress = document.querySelector("#progress");
-const icon = document.querySelector("#icon");
-
-const scriptBox = document.querySelector("#scriptBox");
-const scriptText = document.querySelector("#scriptText");
-const copyScript = document.querySelector("#copyScript");
-const copyStatus = document.querySelector("#copyStatus");
+const scriptBox = document.getElementById("scriptBox");
+const scriptText = document.getElementById("scriptText");
+const copyScript = document.getElementById("copyScript");
+const copyStatus = document.getElementById("copyStatus");
+const continueButton = document.getElementById("continue");
 
 
 /* SCRIPT NÃO ENCONTRADO */
 
 if (!script) {
 
-  title.textContent = "Script não encontrado";
+  if (title) {
+    title.textContent = "Script não encontrado";
+  }
 
-  msg.textContent =
-    "Esse script não existe ou o link está incompleto.";
+  if (msg) {
+    msg.textContent =
+      "Esse script não existe ou o link está incompleto.";
+  }
 
-  timer.textContent = "";
+  if (timer) {
+    timer.textContent = "";
+  }
 
-  icon.textContent = "!";
-
-  icon.classList.add("error");
+  if (icon) {
+    icon.textContent = "!";
+    icon.classList.add("error");
+  }
 
 }
 
 
-/* PROCESSO DE LIBERAÇÃO */
+/* SCRIPT ENCONTRADO */
 
 else {
 
-  let n = 5;
-
+  let segundos = 5;
 
   const mensagens = [
     "Verificando conexão...",
@@ -64,103 +59,152 @@ else {
     "Acesso liberado."
   ];
 
+  if (title) {
+    title.textContent = "Verificando acesso";
+  }
 
-  /* PRIMEIRA MENSAGEM */
+  if (msg) {
+    msg.textContent = mensagens[0];
+  }
 
-  title.textContent = "Verificando acesso";
+  if (timer) {
+    timer.textContent = "5s";
+  }
 
-  msg.textContent = mensagens[0];
-
-
-  const tick = setInterval(() => {
-
-    n--;
-
-
-    /* PROGRESSO */
-
-    const porcentagem = ((5 - n) / 5) * 100;
-
-    progress.style.width = `${porcentagem}%`;
+  if (progress) {
+    progress.style.width = "0%";
+  }
 
 
-    /* MENSAGENS */
+  const intervalo = setInterval(function() {
 
-    if (n === 4) {
+    segundos--;
 
-      title.textContent = "Conexão verificada";
+    const porcentagem =
+      ((5 - segundos) / 5) * 100;
 
-      msg.textContent = mensagens[1];
 
+    if (progress) {
+      progress.style.width =
+        `${porcentagem}%`;
     }
 
-    if (n === 3) {
 
-      title.textContent = "Preparando script";
+    if (segundos === 4) {
 
-      msg.textContent = mensagens[2];
+      if (title) {
+        title.textContent =
+          "Conexão verificada";
+      }
 
-    }
-
-    if (n === 2) {
-
-      title.textContent = "Quase pronto";
-
-      msg.textContent = mensagens[3];
-
-    }
-
-    if (n === 1) {
-
-      title.textContent = "Liberando acesso";
-
-      msg.textContent = mensagens[3];
+      if (msg) {
+        msg.textContent =
+          mensagens[1];
+      }
 
     }
 
 
-    /* CONTADOR */
+    if (segundos === 3) {
 
-    timer.textContent =
-      n > 0 ? `${n}s` : "✓";
+      if (title) {
+        title.textContent =
+          "Preparando script";
+      }
+
+      if (msg) {
+        msg.textContent =
+          mensagens[2];
+      }
+
+    }
+
+
+    if (segundos === 2) {
+
+      if (title) {
+        title.textContent =
+          "Quase pronto";
+      }
+
+      if (msg) {
+        msg.textContent =
+          mensagens[3];
+      }
+
+    }
+
+
+    if (segundos === 1) {
+
+      if (title) {
+        title.textContent =
+          "Liberando acesso";
+      }
+
+      if (msg) {
+        msg.textContent =
+          mensagens[4];
+      }
+
+    }
+
+
+    if (timer) {
+      timer.textContent =
+        segundos > 0
+          ? `${segundos}s`
+          : "✓";
+    }
 
 
     /* FINAL */
 
-    if (n <= 0) {
+    if (segundos <= 0) {
 
-      clearInterval(tick);
+      clearInterval(intervalo);
+
+      if (progress) {
+        progress.style.width = "100%";
+      }
+
+      if (title) {
+        title.textContent =
+          "Script pronto";
+      }
+
+      if (msg) {
+        msg.textContent =
+          "Seu script foi liberado. Agora é só copiar.";
+      }
+
+      if (icon) {
+        icon.textContent = "✓";
+        icon.classList.add("success");
+      }
+
+      if (timer) {
+        timer.textContent =
+          "ACESSO LIBERADO";
+      }
 
 
-      progress.style.width = "100%";
+      if (scriptText) {
+        scriptText.value = script;
+      }
 
 
-      title.textContent = "Script pronto";
+      if (scriptBox) {
 
-      msg.textContent =
-        "Seu script foi liberado. Agora é só copiar.";
+        setTimeout(function() {
 
+          scriptBox.style.display = "block";
 
-      icon.textContent = "✓";
+          scriptBox.classList.add("show");
 
-      icon.classList.add("success");
+        }, 250);
 
-
-      timer.textContent = "ACESSO LIBERADO";
-
-
-      /* COLOCAR SCRIPT */
-
-      scriptText.value = script;
-
-
-      setTimeout(() => {
-
-        scriptBox.style.display = "block";
-
-        scriptBox.classList.add("show");
-
-      }, 250);
+      }
 
     }
 
@@ -169,54 +213,64 @@ else {
 }
 
 
-/* COPIAR SCRIPT */
+/* BOTÃO COPIAR */
 
 if (copyScript) {
 
-  copyScript.onclick = async () => {
+  copyScript.addEventListener(
+    "click",
+    async function() {
 
-    if (!scriptText.value) return;
-
-
-    try {
-
-      await navigator.clipboard.writeText(
-        scriptText.value
-      );
-
-      copyStatus.textContent =
-        "✓ Script copiado com sucesso!";
-
-      copyScript.classList.add("copied");
-
-      copyScript.innerHTML =
-        "<span>✓</span> Script Copiado";
+      if (!scriptText || !scriptText.value) {
+        return;
+      }
 
 
-      setTimeout(() => {
+      try {
 
-        copyStatus.textContent = "";
+        await navigator.clipboard.writeText(
+          scriptText.value
+        );
 
-        copyScript.classList.remove("copied");
+        if (copyStatus) {
+          copyStatus.textContent =
+            "✓ Script copiado com sucesso!";
+        }
+
+        copyScript.classList.add("copied");
 
         copyScript.innerHTML =
-          "<span>📋</span> Copiar Script";
-
-      }, 2500);
+          "<span>✓</span> Script Copiado";
 
 
-    } catch {
+        setTimeout(function() {
 
-      scriptText.select();
+          if (copyStatus) {
+            copyStatus.textContent = "";
+          }
 
-      document.execCommand("copy");
+          copyScript.classList.remove("copied");
+
+          copyScript.innerHTML =
+            "<span>📋</span> Copiar Script";
+
+        }, 2500);
 
 
-      copyStatus.textContent =
-        "✓ Script copiado com sucesso!";
+      } catch (erro) {
+
+        scriptText.select();
+
+        document.execCommand("copy");
+
+        if (copyStatus) {
+          copyStatus.textContent =
+            "✓ Script copiado com sucesso!";
+        }
+
+      }
 
     }
+  );
 
-  };
-
-}
+    }
