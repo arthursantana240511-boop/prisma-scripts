@@ -84,3 +84,43 @@
   }
 
 }
+#executores {
+  display: flex !important;
+  position: relative !important;
+  width: min(1150px, calc(100% - 32px)) !important;
+  min-height: 130px !important;
+  margin: 80px auto !important;
+  padding: 28px !important;
+  visibility: visible !important;
+  opacity: 1 !important;
+  background: rgba(139, 92, 246, 0.10) !important;
+  border: 1px solid rgba(139, 92, 246, 0.35) !important;
+  border-radius: 20px !important;
+  color: white !important;
+  z-index: 10 !important;
+}
+
+#executores .feature-icon {
+  display: grid !important;
+  visibility: visible !important;
+}
+
+#executores h2,
+#executores p,
+#executores small {
+  display: block !important;
+  visibility: visible !important;
+}
+
+#executores .executor-buttons {
+  display: flex !important;
+  visibility: visible !important;
+  margin-left: auto !important;
+  gap: 10px !important;
+}
+
+#executores .executor-buttons a {
+  display: block !important;
+  visibility: visible !important;
+  color: white !important;
+}
