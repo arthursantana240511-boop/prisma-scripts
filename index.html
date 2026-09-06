@@ -1,8 +1,9 @@
 <!doctype html>
 <html lang="pt-BR">
+
 <head>
   <meta charset="utf-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="viewport" content="width=device-width,initial-scale=1">
 
   <title>Prisma Scripts</title>
 
@@ -12,8 +13,10 @@
 <body>
 
   <header class="topbar">
+
     <a href="index.html" class="logo">
-      <span>✦</span> PRISMA <b>SCRIPTS</b>
+      <span>✦</span>
+      PRISMA <b>SCRIPTS</b>
     </a>
 
     <nav>
@@ -21,27 +24,28 @@
       <a href="#executores">Executores</a>
       <a href="#updates">Updates</a>
     </nav>
+
   </header>
 
 
   <main>
 
-    <!-- HERO -->
     <section class="hero">
+
       <div class="hero-content">
 
         <div class="pill">
-          PRISMA LIBRARY
+          ✦ PRISMA LIBRARY
         </div>
 
         <h1>
           SCRIPTS<br>
-          <span>SEM LIMITES</span>
+          <span>SEM LIMITES.</span>
         </h1>
 
         <p>
-          Encontre scripts e executores para Roblox
-          em um só lugar.
+          Encontre scripts, executores e recursos
+          para Roblox em um só lugar.
         </p>
 
         <a href="#scripts" class="btn">
@@ -50,93 +54,124 @@
         </a>
 
       </div>
+
     </section>
 
 
-    <!-- BIBLIOTECA -->
     <section id="scripts" class="library">
 
       <div class="section-head">
+
         <div>
-          <span class="section-label">BIBLIOTECA</span>
-          <h2>Scripts disponíveis</h2>
+          <span class="section-label">
+            PRISMA LIBRARY
+          </span>
+
+          <h2>
+            Scripts disponíveis
+          </h2>
         </div>
 
         <span id="count" class="count">
           1 script
         </span>
+
       </div>
 
 
-      <!-- PESQUISA -->
       <div class="search-box">
+
         <span>⌕</span>
 
         <input
-          type="text"
           id="search"
+          type="text"
           placeholder="Pesquisar scripts..."
           autocomplete="off"
         >
+
       </div>
 
 
-      <!-- CATEGORIAS -->
       <div class="categories">
 
-        <button class="category active" data-category="todos">
+        <button
+          class="category active"
+          data-category="todos"
+        >
           Todos
         </button>
 
-        <button class="category" data-category="roblox">
+        <button
+          class="category"
+          data-category="roblox"
+        >
           Roblox
         </button>
 
-        <button class="category" data-category="executores">
+        <button
+          class="category"
+          data-category="executores"
+        >
           Executores
         </button>
 
-        <button class="category" data-category="utilidades">
+        <button
+          class="category"
+          data-category="utilidades"
+        >
           Utilidades
         </button>
 
       </div>
 
 
-      <!-- SCRIPTS -->
+      <!-- OS SCRIPTS SERÃO COLOCADOS PELO scripts.js -->
       <div id="cards" class="cards"></div>
 
 
       <!-- EXECUTORES -->
-      <section id="executores" class="executors">
+
+      <section id="executores" class="executor-section">
 
         <div class="section-head">
-          <div>
-            <span class="section-label">PRISMA TOOLS</span>
 
-            <h2>Executores</h2>
+          <div>
+
+            <span class="section-label">
+              PRISMA TOOLS
+            </span>
+
+            <h2>
+              Executores
+            </h2>
 
             <p>
               Escolha o executor compatível com seu dispositivo.
             </p>
+
           </div>
+
         </div>
 
 
-        <article class="executor-card">
+        <div class="executor-card">
 
           <div class="executor-icon">
             ⚡
           </div>
 
-          <div class="executor-info">
+          <div class="executor-content">
 
-            <h3>Delta Executor</h3>
+            <h3>
+              Delta Executor
+            </h3>
 
             <p>
               Executor para Roblox disponível para
               dispositivos mobile e PC.
             </p>
+
 
             <div class="executor-buttons">
 
@@ -149,6 +184,7 @@
                 📱 Mobile
                 <strong>→</strong>
               </a>
+
 
               <a
                 class="btn"
@@ -164,24 +200,38 @@
 
           </div>
 
-        </article>
+        </div>
 
       </section>
 
 
       <!-- UPDATES -->
+
       <section id="updates" class="updates">
 
         <span class="section-label">
-          PRISMA UPDATES
+          PRISMA UPDATE
         </span>
 
-        <h2>Novidades</h2>
+        <h2>
+          Últimas novidades
+        </h2>
 
-        <p>
-          Novos scripts e ferramentas serão adicionados
-          em breve.
-        </p>
+        <div class="update-card">
+
+          <span>✦</span>
+
+          <div>
+            <strong>
+              Prisma Scripts
+            </strong>
+
+            <p>
+              Nova interface da biblioteca chegando.
+            </p>
+          </div>
+
+        </div>
 
       </section>
 
@@ -191,14 +241,20 @@
 
 
   <footer>
+
+    <div class="footer-logo">
+      ✦ Prisma Scripts
+    </div>
+
     <p>
-      © <span id="year"></span> Prisma Scripts.
-      Todos os direitos reservados.
+      © <span id="year"></span> Prisma Scripts
     </p>
+
   </footer>
 
 
   <script src="scripts.js"></script>
 
 </body>
+
 </html>
