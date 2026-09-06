@@ -12,9 +12,14 @@ const count = document.getElementById("count");
 const year = document.getElementById("year");
 const search = document.getElementById("search");
 
+/* ANO */
+
 if (year) {
   year.textContent = new Date().getFullYear();
 }
+
+
+/* MOSTRAR SCRIPTS */
 
 function mostrarScripts(lista) {
 
@@ -35,15 +40,17 @@ function mostrarScripts(lista) {
         padding: 50px 20px;
         color: #777783;
       ">
-        <div style="font-size: 40px;">🔎</div>
 
-        <h3 style="margin-top: 10px; color: white;">
+        <div style="font-size:40px;">🔎</div>
+
+        <h3 style="margin-top:10px;color:white;">
           Nenhum script encontrado
         </h3>
 
-        <p style="margin-top: 8px;">
+        <p style="margin-top:8px;">
           Tente pesquisar outro nome.
         </p>
+
       </div>
     `;
 
@@ -67,7 +74,7 @@ function mostrarScripts(lista) {
 
       <a
         class="btn"
-        href="get.html?to=${script.slug}"
+        href="get.html?to=${encodeURIComponent(script.slug)}"
       >
         Obter Script
         <strong>→</strong>
@@ -79,6 +86,9 @@ function mostrarScripts(lista) {
   });
 }
 
+
+/* MOSTRAR INICIALMENTE */
+
 mostrarScripts(SCRIPTS);
 
 
@@ -88,13 +98,16 @@ if (search) {
 
   search.addEventListener("input", function() {
 
-    const texto = search.value.toLowerCase().trim();
+    const texto = search.value
+      .toLowerCase()
+      .trim();
 
     const resultados = SCRIPTS.filter(function(script) {
 
-      return script.name
-        .toLowerCase()
-        .includes(texto);
+      return (
+        script.name.toLowerCase().includes(texto) ||
+        script.description.toLowerCase().includes(texto)
+      );
 
     });
 
@@ -103,3 +116,36 @@ if (search) {
   });
 
 }
+
+
+/* CATEGORIAS */
+
+const categorias = document.querySelectorAll(".category");
+
+categorias.forEach(function(botao) {
+
+  botao.addEventListener("click", function() {
+
+    categorias.forEach(function(b) {
+      b.classList.remove("active");
+    });
+
+    botao.classList.add("active");
+
+    const categoria = botao.textContent
+      .toLowerCase()
+      .trim();
+
+    if (categoria === "todos" || categoria === "roblox") {
+
+      mostrarScripts(SCRIPTS);
+
+    } else {
+
+      mostrarScripts([]);
+
+    }
+
+  });
+
+});
