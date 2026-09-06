@@ -1,142 +1,300 @@
 <!DOCTYPE html>
 <html lang="pt-BR">
+
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
   <title>Prisma Scripts</title>
 
   <style>
-    body {
+
+    * {
+      box-sizing: border-box;
       margin: 0;
-      background: #07070b;
-      color: white;
-      font-family: Arial, sans-serif;
-      padding: 30px;
+      padding: 0;
     }
 
-    h1 {
-      text-align: center;
+    html {
+      scroll-behavior: smooth;
+    }
+
+    body {
+      background: #050508;
+      color: #fff;
+      font-family: Arial, Helvetica, sans-serif;
+      overflow-x: hidden;
+    }
+
+    a {
+      color: inherit;
+      text-decoration: none;
+    }
+
+    /* FUNDO */
+
+    .glow {
+      position: fixed;
+      width: 450px;
+      height: 450px;
+      border-radius: 50%;
+      filter: blur(150px);
+      opacity: .15;
+      pointer-events: none;
+      z-index: -1;
+    }
+
+    .glow1 {
+      background: #7c3aed;
+      top: -200px;
+      left: -150px;
+    }
+
+    .glow2 {
+      background: #9333ea;
+      right: -200px;
+      top: 500px;
+    }
+
+    /* NAV */
+
+    nav {
+      width: min(1150px, calc(100% - 30px));
+      height: 75px;
+      margin: auto;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      border-bottom: 1px solid rgba(255,255,255,.07);
+    }
+
+    .logo {
+      font-size: 17px;
+      font-weight: 900;
+      letter-spacing: 1px;
+    }
+
+    .logo span {
       color: #a78bfa;
     }
 
-    .search {
-      max-width: 600px;
-      margin: 30px auto;
+    .logo b {
+      color: #a78bfa;
     }
 
-    input {
-      width: 100%;
-      padding: 16px;
-      box-sizing: border-box;
-      background: #111116;
-      border: 1px solid #333;
-      border-radius: 10px;
+    .navlinks {
+      display: flex;
+      gap: 25px;
+    }
+
+    .navlinks a {
+      color: #9999a6;
+      font-size: 13px;
+    }
+
+    .navlinks a:hover {
       color: white;
-      outline: none;
     }
 
-    .card {
-      max-width: 600px;
-      margin: 20px auto;
-      padding: 25px;
-      background: #111116;
-      border: 1px solid #292932;
-      border-radius: 15px;
+    /* HERO */
+
+    .hero {
+      width: min(900px, calc(100% - 30px));
+      margin: auto;
+      text-align: center;
+      padding: 100px 0 70px;
     }
 
-    button, .download {
+    .pill {
       display: inline-block;
-      padding: 12px 18px;
-      margin-top: 10px;
+      padding: 8px 14px;
+      border-radius: 50px;
+      border: 1px solid rgba(167,139,250,.3);
+      background: rgba(139,92,246,.08);
+      color: #b9a5ff;
+      font-size: 11px;
+      font-weight: bold;
+      letter-spacing: 1.5px;
+    }
+
+    .hero h1 {
+      margin-top: 25px;
+      font-size: clamp(48px, 10vw, 90px);
+      line-height: .9;
+      letter-spacing: -4px;
+      font-weight: 900;
+    }
+
+    .hero h1 span {
+      color: #9b7aff;
+    }
+
+    .hero p {
+      max-width: 550px;
+      margin: 25px auto;
+      color: #92929f;
+      line-height: 1.7;
+      font-size: 15px;
+    }
+
+    .mainbutton {
+      display: inline-flex;
+      gap: 20px;
+      align-items: center;
+      padding: 15px 20px;
       background: #8b5cf6;
-      color: white;
+      border-radius: 12px;
+      font-weight: bold;
+      font-size: 13px;
+      transition: .2s;
+    }
+
+    .mainbutton:hover {
+      transform: translateY(-3px);
+      box-shadow: 0 15px 40px rgba(139,92,246,.3);
+    }
+
+    /* PESQUISA */
+
+    .searcharea {
+      width: min(800px, calc(100% - 30px));
+      margin: auto;
+    }
+
+    .searchbox {
+      display: flex;
+      align-items: center;
+      gap: 12px;
+      padding: 15px 18px;
+      background: rgba(255,255,255,.035);
+      border: 1px solid rgba(255,255,255,.09);
+      border-radius: 14px;
+    }
+
+    .searchbox span {
+      font-size: 23px;
+      color: #777783;
+    }
+
+    .searchbox input {
+      width: 100%;
       border: 0;
-      border-radius: 8px;
-      text-decoration: none;
+      outline: 0;
+      background: transparent;
+      color: white;
+      font-size: 14px;
+    }
+
+    .searchbox input::placeholder {
+      color: #666672;
+    }
+
+    /* CATEGORIAS */
+
+    .categories {
+      width: min(1150px, calc(100% - 30px));
+      margin: 25px auto 70px;
+      display: flex;
+      gap: 10px;
+      overflow-x: auto;
+    }
+
+    .category {
+      white-space: nowrap;
+      padding: 9px 15px;
+      border-radius: 50px;
+      border: 1px solid rgba(255,255,255,.08);
+      background: rgba(255,255,255,.025);
+      color: #9999a6;
       cursor: pointer;
     }
 
-    .executor {
-      margin-top: 50px;
+    .category.active,
+    .category:hover {
+      background: rgba(139,92,246,.18);
+      border-color: rgba(139,92,246,.4);
+      color: white;
     }
-  </style>
-</head>
 
-<body>
+    /* CONTAINER */
 
-  <h1>✦ PRISMA SCRIPTS</h1>
+    .container {
+      width: min(1150px, calc(100% - 30px));
+      margin: auto;
+    }
 
-  <div class="search">
-    <input
-      id="search"
-      type="text"
-      placeholder="Pesquisar scripts..."
-    >
-  </div>
+    .heading {
+      display: flex;
+      justify-content: space-between;
+      align-items: end;
+      margin-bottom: 25px;
+    }
 
-  <div id="scripts">
+    .heading small {
+      color: #9278df;
+      font-size: 10px;
+      letter-spacing: 2px;
+      font-weight: bold;
+    }
 
-    <div class="card">
-      <h2>⚡ Script Roube um Ovo</h2>
-      <p>Script para Roube um Ovo.</p>
-      <a class="download" href="get.html?to=script-roube-um-ovo">
-        Obter Script →
-      </a>
-    </div>
+    .heading h2 {
+      margin-top: 8px;
+      font-size: 26px;
+    }
 
-  </div>
+    .heading > span {
+      color: #666672;
+      font-size: 12px;
+    }
 
-  <!-- EXECUTORES -->
+    /* SCRIPT */
 
-  <div class="card executor">
+    .grid {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 18px;
+    }
 
-    <h2>⚡ Executores</h2>
+    .card {
+      padding: 25px;
+      min-height: 230px;
+      background: rgba(255,255,255,.035);
+      border: 1px solid rgba(255,255,255,.07);
+      border-radius: 18px;
+      transition: .2s;
+    }
 
-    <p>
-      Escolha o executor compatível com seu dispositivo.
-    </p>
+    .card:hover {
+      transform: translateY(-5px);
+      border-color: rgba(139,92,246,.4);
+    }
 
-    <a
-      class="download"
-      href="https://www.mediafire.com/file/pfn3jfumf35quib/Delta-2.735.1138.apk/file"
-      target="_blank"
-    >
-      📱 Mobile
-    </a>
+    .cardicon {
+      width: 45px;
+      height: 45px;
+      display: grid;
+      place-items: center;
+      border-radius: 13px;
+      background: rgba(139,92,246,.14);
+      font-size: 21px;
+      margin-bottom: 20px;
+    }
 
-    <a
-      class="download"
-      href="https://realexecutor.com/download.html"
-      target="_blank"
-    >
-      🖥️ PC
-    </a>
+    .card h3 {
+      font-size: 18px;
+      margin-bottom: 9px;
+    }
 
-  </div>
+    .card p {
+      color: #858591;
+      font-size: 13px;
+      line-height: 1.6;
+      margin-bottom: 20px;
+    }
 
-  <script>
-
-    const pesquisa = document.getElementById("search");
-    const scripts = document.getElementById("scripts");
-
-    pesquisa.addEventListener("input", function() {
-
-      const texto = pesquisa.value.toLowerCase();
-
-      const script = scripts.querySelector(".card");
-
-      if (script) {
-
-        const nome = script.innerText.toLowerCase();
-
-        script.style.display =
-          nome.includes(texto) ? "block" : "none";
-
-      }
-
-    });
-
-  </script>
-
-</body>
-</html>
+    .getbutton {
+      display: inline-block;
+      padding: 10px 14px;
+      border-radius: 9px;
+      background: rgba(139,92,246,.15);
+      border: 1px solid rgba
