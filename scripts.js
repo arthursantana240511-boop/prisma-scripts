@@ -16,28 +16,23 @@ const year = document.getElementById("year");
 
 let categoriaAtual = "todos";
 
-
-/* ANO */
 if (year) {
   year.textContent = new Date().getFullYear();
 }
 
-
-/* MOSTRAR SCRIPTS */
 function mostrarScripts(lista) {
-
   if (!cards) return;
 
   cards.innerHTML = "";
 
   if (count) {
     count.textContent =
-      lista.length +
-      (lista.length === 1 ? " script" : " scripts");
+      lista.length === 1
+        ? "1 script"
+        : `${lista.length} scripts`;
   }
 
   if (lista.length === 0) {
-
     cards.innerHTML = `
       <div style="
         grid-column: 1 / -1;
@@ -45,7 +40,6 @@ function mostrarScripts(lista) {
         padding: 50px 20px;
         color: #777783;
       ">
-
         <div style="font-size:40px;">🔎</div>
 
         <h3 style="
@@ -58,13 +52,11 @@ function mostrarScripts(lista) {
         <p style="margin-top:8px;">
           Tente pesquisar outro nome.
         </p>
-
       </div>
     `;
 
     return;
   }
-
 
   lista.forEach(function(script) {
 
@@ -86,8 +78,9 @@ function mostrarScripts(lista) {
       </p>
 
       <a
-        class="btn"
+        class="main-btn"
         href="get.html?to=${encodeURIComponent(script.slug)}"
+        style="margin-top:20px;"
       >
         Obter Script
         <strong>→</strong>
@@ -95,21 +88,18 @@ function mostrarScripts(lista) {
     `;
 
     cards.appendChild(card);
-
   });
 }
 
 
-/* ATUALIZAR TELA */
-function atualizar() {
+function pesquisar() {
 
   const texto = search
     ? search.value.toLowerCase().trim()
     : "";
 
-
   /*
-    PESQUISA POR EXECUTOR
+    PALAVRAS QUE MOSTRAM O EXECUTOR
   */
 
   const termosExecutor = [
@@ -117,11 +107,11 @@ function atualizar() {
     "executores",
     "delta",
     "mobile",
-    "celular",
-    "android",
     "pc",
-    "computador",
-    "windows"
+    "windows",
+    "android",
+    "celular",
+    "computador"
   ];
 
   const pesquisandoExecutor =
@@ -131,27 +121,7 @@ function atualizar() {
 
 
   /*
-    PESQUISA POR SCRIPT
-  */
-
-  const resultados = SCRIPTS.filter(function(script) {
-
-    const correspondeTexto =
-      !texto ||
-      script.name.toLowerCase().includes(texto) ||
-      script.description.toLowerCase().includes(texto);
-
-    const correspondeCategoria =
-      categoriaAtual === "todos" ||
-      categoriaAtual === script.category;
-
-    return correspondeTexto && correspondeCategoria;
-
-  });
-
-
-  /*
-    SE PESQUISOU EXECUTOR
+    PESQUISA POR EXECUTOR
   */
 
   if (pesquisandoExecutor) {
@@ -200,6 +170,17 @@ function atualizar() {
       executorSection.style.display = "none";
     }
 
+    const resultados = SCRIPTS.filter(function(script) {
+
+      const correspondeTexto =
+        !texto ||
+        script.name.toLowerCase().includes(texto) ||
+        script.description.toLowerCase().includes(texto);
+
+      return correspondeTexto;
+
+    });
+
     mostrarScripts(resultados);
 
     return;
@@ -207,7 +188,7 @@ function atualizar() {
 
 
   /*
-    UTILIDADES
+    CATEGORIA UTILIDADES
   */
 
   if (categoriaAtual === "utilidades") {
@@ -223,43 +204,61 @@ function atualizar() {
 
 
   /*
-    PESQUISA NORMAL
+    TODOS
   */
+
+  const resultados = SCRIPTS.filter(function(script) {
+
+    return (
+      !texto ||
+      script.name.toLowerCase().includes(texto) ||
+      script.description.toLowerCase().includes(texto)
+    );
+
+  });
 
   mostrarScripts(resultados);
 
 
   /*
-    SEM PESQUISA:
-    MOSTRA SCRIPT + EXECUTOR
+    SEM PESQUISA = MOSTRA SCRIPT + EXECUTOR
   */
 
-  if (!texto && executorSection) {
-    executorSection.style.display = "block";
-  } else if (executorSection) {
-    executorSection.style.display =
-      resultados.length === 0 ? "none" : "none";
-  }
+  if (!texto) {
 
+    if (executorSection) {
+      executorSection.style.display = "block";
+    }
+
+  } else {
+
+    if (executorSection) {
+      executorSection.style.display = "none";
+    }
+
+  }
 }
 
 
-/* PESQUISA */
+/*
+  PESQUISA
+*/
 
 if (search) {
 
   search.addEventListener("input", function() {
-    atualizar();
+    pesquisar();
   });
 
 }
 
 
-/* CATEGORIAS */
+/*
+  CATEGORIAS
+*/
 
 const botoesCategoria =
   document.querySelectorAll(".category");
-
 
 botoesCategoria.forEach(function(botao) {
 
@@ -274,13 +273,15 @@ botoesCategoria.forEach(function(botao) {
     categoriaAtual =
       botao.dataset.category || "todos";
 
-    atualizar();
+    pesquisar();
 
   });
 
 });
 
 
-/* INICIAR */
+/*
+  INICIAR
+*/
 
-atualizar();
+pesquisar();
