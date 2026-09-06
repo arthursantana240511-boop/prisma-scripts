@@ -1141,3 +1141,383 @@ footer {
   }
 
 }
+
+/* =========================================
+   PRISMA GATE — TERMINAL FUTURISTA
+========================================= */
+
+.gatecard {
+  position: relative;
+  overflow: hidden;
+}
+
+
+/* LINHA DE LUZ NO TOPO */
+
+.gatecard::before {
+  content: "";
+
+  position: absolute;
+
+  top: 0;
+  left: 10%;
+
+  width: 80%;
+  height: 1px;
+
+  background: linear-gradient(
+    90deg,
+    transparent,
+    #9b7aff,
+    transparent
+  );
+
+  opacity: .7;
+}
+
+
+/* ÍCONE ANIMADO */
+
+.gate-icon {
+  position: relative;
+
+  animation:
+    gatePulse 2s ease-in-out infinite;
+}
+
+
+.gate-icon::after {
+  content: "";
+
+  position: absolute;
+
+  inset: -7px;
+
+  border-radius: 24px;
+
+  border: 1px solid rgba(139,92,246,.15);
+
+  animation:
+    gateRing 2s ease-out infinite;
+}
+
+
+@keyframes gatePulse {
+
+  0%, 100% {
+    box-shadow:
+      0 0 25px rgba(139,92,246,.08);
+  }
+
+  50% {
+    box-shadow:
+      0 0 45px rgba(139,92,246,.25);
+  }
+
+}
+
+
+@keyframes gateRing {
+
+  0% {
+    transform: scale(.95);
+    opacity: .7;
+  }
+
+  100% {
+    transform: scale(1.15);
+    opacity: 0;
+  }
+
+}
+
+
+/* ERRO */
+
+.gate-icon.error {
+  color: #ff6b8a;
+
+  background:
+    rgba(255,70,100,.08);
+
+  border-color:
+    rgba(255,70,100,.2);
+
+}
+
+
+/* SUCESSO */
+
+.gate-icon.success {
+
+  color: #c4b5fd;
+
+  background:
+    rgba(139,92,246,.18);
+
+  animation:
+    successPop .4s ease forwards;
+
+}
+
+
+@keyframes successPop {
+
+  0% {
+    transform: scale(.8);
+  }
+
+  70% {
+    transform: scale(1.08);
+  }
+
+  100% {
+    transform: scale(1);
+  }
+
+}
+
+
+/* STATUS */
+
+.gate-status {
+  transition: .3s;
+}
+
+
+/* PROGRESSO */
+
+.gate-progress {
+  position: relative;
+}
+
+
+.gate-progress-bar {
+  position: relative;
+}
+
+
+.gate-progress-bar::after {
+
+  content: "";
+
+  position: absolute;
+
+  top: 0;
+
+  left: -80px;
+
+  width: 60px;
+
+  height: 100%;
+
+  background:
+    linear-gradient(
+      90deg,
+      transparent,
+      rgba(255,255,255,.35),
+      transparent
+    );
+
+  animation:
+    progressLight 1.5s linear infinite;
+
+}
+
+
+@keyframes progressLight {
+
+  from {
+    left: -80px;
+  }
+
+  to {
+    left: 100%;
+  }
+
+}
+
+
+/* CONTADOR */
+
+.gate-timer {
+  min-height: 18px;
+
+  font-family:
+    Consolas,
+    Monaco,
+    monospace;
+
+  letter-spacing: 1px;
+
+  transition: .3s;
+}
+
+
+/* CAIXA DO SCRIPT */
+
+.script-result {
+  position: relative;
+
+  opacity: 0;
+
+  transform:
+    translateY(12px)
+    scale(.98);
+
+  transition:
+    opacity .4s ease,
+    transform .4s ease;
+}
+
+
+.script-result.show {
+
+  opacity: 1;
+
+  transform:
+    translateY(0)
+    scale(1);
+
+}
+
+
+/* EFEITO TERMINAL */
+
+.code-box {
+
+  position: relative;
+
+  box-shadow:
+    inset 0 0 30px rgba(139,92,246,.025);
+}
+
+
+#scriptText {
+
+  scrollbar-width: thin;
+
+  scrollbar-color:
+    #4c3b79
+    transparent;
+}
+
+
+#scriptText::selection {
+
+  background: rgba(139,92,246,.35);
+
+}
+
+
+/* BOTÃO COPIAR */
+
+.copy-button {
+
+  position: relative;
+
+  overflow: hidden;
+
+  transition:
+    transform .2s,
+    box-shadow .2s,
+    background .2s;
+}
+
+
+.copy-button::after {
+
+  content: "";
+
+  position: absolute;
+
+  top: 0;
+
+  left: -100%;
+
+  width: 60%;
+
+  height: 100%;
+
+  background:
+    linear-gradient(
+      90deg,
+      transparent,
+      rgba(255,255,255,.15),
+      transparent
+    );
+
+  transition: .5s;
+
+}
+
+
+.copy-button:hover::after {
+
+  left: 130%;
+
+}
+
+
+.copy-button.copied {
+
+  background:
+    linear-gradient(
+      135deg,
+      #5b21b6,
+      #7c3aed
+    );
+
+}
+
+
+/* TEXTO DE SUCESSO */
+
+.copy-status {
+
+  animation:
+    statusAppear .3s ease;
+}
+
+
+@keyframes statusAppear {
+
+  from {
+    opacity: 0;
+    transform: translateY(-3px);
+  }
+
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+
+}
+
+
+/* MOBILE */
+
+@media (max-width: 500px) {
+
+  .gatecard {
+
+    padding: 25px 16px;
+
+  }
+
+  .gate-icon {
+
+    width: 62px;
+    height: 62px;
+
+    font-size: 27px;
+
+  }
+
+  .gatecard h1 {
+
+    font-size: 24px;
+
+  }
+
+  }
