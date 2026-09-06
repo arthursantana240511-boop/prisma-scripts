@@ -1,6 +1,5 @@
-    <!doctype html>
+<!doctype html>
 <html lang="pt-BR">
-
 <head>
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
@@ -12,329 +11,179 @@
 
 <body>
 
-  <div class="glow glow-1"></div>
-  <div class="glow glow-2"></div>
-
-  <nav>
-
-    <a class="logo" href="index.html">
-      <span>✦</span>
-      PRISMA <b>SCRIPTS</b>
+  <header class="topbar">
+    <a href="index.html" class="logo">
+      <span>✦</span> PRISMA <b>SCRIPTS</b>
     </a>
 
-    <div class="nav-links">
+    <nav>
       <a href="#scripts">Scripts</a>
       <a href="#executores">Executores</a>
       <a href="#updates">Updates</a>
-    </div>
-
-  </nav>
+    </nav>
+  </header>
 
 
   <main>
 
     <!-- HERO -->
-
     <section class="hero">
+      <div class="hero-content">
 
-      <div class="pill">
-        ✦ PRISMA LIBRARY
+        <div class="pill">
+          PRISMA LIBRARY
+        </div>
+
+        <h1>
+          SCRIPTS<br>
+          <span>SEM LIMITES</span>
+        </h1>
+
+        <p>
+          Encontre scripts e executores para Roblox
+          em um só lugar.
+        </p>
+
+        <a href="#scripts" class="btn">
+          Explorar biblioteca
+          <strong>→</strong>
+        </a>
+
       </div>
-
-      <h1>
-        SCRIPTS<br>
-        <em>SEM LIMITES.</em>
-      </h1>
-
-      <p>
-        Encontre scripts, executores e recursos
-        para Roblox em um só lugar.
-      </p>
-
-      <a class="main-btn" href="#scripts">
-        Explorar biblioteca
-        <strong>→</strong>
-      </a>
-
     </section>
 
 
-    <!-- PESQUISA -->
+    <!-- BIBLIOTECA -->
+    <section id="scripts" class="library">
 
-    <section class="search-area">
+      <div class="section-head">
+        <div>
+          <span class="section-label">BIBLIOTECA</span>
+          <h2>Scripts disponíveis</h2>
+        </div>
 
+        <span id="count" class="count">
+          1 script
+        </span>
+      </div>
+
+
+      <!-- PESQUISA -->
       <div class="search-box">
-
         <span>⌕</span>
 
         <input
-          id="search"
           type="text"
+          id="search"
           placeholder="Pesquisar scripts..."
           autocomplete="off"
         >
+      </div>
+
+
+      <!-- CATEGORIAS -->
+      <div class="categories">
+
+        <button class="category active" data-category="todos">
+          Todos
+        </button>
+
+        <button class="category" data-category="roblox">
+          Roblox
+        </button>
+
+        <button class="category" data-category="executores">
+          Executores
+        </button>
+
+        <button class="category" data-category="utilidades">
+          Utilidades
+        </button>
 
       </div>
 
-    </section>
+
+      <!-- SCRIPTS -->
+      <div id="cards" class="cards"></div>
 
 
-    <!-- CATEGORIAS -->
+      <!-- EXECUTORES -->
+      <section id="executores" class="executors">
 
-    <section class="categories">
+        <div class="section-head">
+          <div>
+            <span class="section-label">PRISMA TOOLS</span>
 
-      <button class="category active">
-        Todos
-      </button>
+            <h2>Executores</h2>
 
-      <button class="category">
-        Roblox
-      </button>
-
-      <button class="category">
-        Executores
-      </button>
-
-      <button class="category">
-        Utilidades
-      </button>
-
-    </section>
-
-
-    <!-- ÁREA DOS SCRIPTS -->
-
-    <section id="scripts" class="wrap">
-
-      <div class="heading">
-
-        <div>
-
-          <small>PRISMA LIBRARY</small>
-
-          <h2>
-            Scripts disponíveis
-          </h2>
-
+            <p>
+              Escolha o executor compatível com seu dispositivo.
+            </p>
+          </div>
         </div>
 
-        <span id="count">
-          1 script
-        </span>
 
-      </div>
+        <article class="executor-card">
 
-
-      <div id="cards" class="grid">
-
-        <!-- SCRIPT 1 -->
-
-        <article class="card">
-
-          <div class="cardicon">
+          <div class="executor-icon">
             ⚡
           </div>
 
-          <div class="status">
-            ● ATIVO
-          </div>
+          <div class="executor-info">
 
-          <h3>
-            Script Roube um Ovo
-          </h3>
+            <h3>Delta Executor</h3>
 
-          <p>
-            Script para Roube um Ovo.
-            Atualizado e pronto para usar.
-          </p>
+            <p>
+              Executor para Roblox disponível para
+              dispositivos mobile e PC.
+            </p>
 
-          <div class="card-bottom">
+            <div class="executor-buttons">
 
-            <span class="tag">
-              ROBLOX
-            </span>
+              <a
+                class="btn"
+                href="https://www.mediafire.com/file/pfn3jfumf35quib/Delta-2.735.1138.apk/file"
+                target="_blank"
+                rel="noopener noreferrer"
+              >
+                📱 Mobile
+                <strong>→</strong>
+              </a>
 
-            <a
-              class="btn"
-              href="get.html?to=script-roube-um-ovo"
-            >
-              Obter Script
-              <strong>→</strong>
-            </a>
+              <a
+                class="btn"
+                href="https://realexecutor.com/download.html"
+                target="_blank"
+                rel="noopener noreferrer"
+              >
+                💻 PC
+                <strong>→</strong>
+              </a>
 
-          </div>
-
-        </article>
-
-
-        <!-- SCRIPT 2 -->
-
-        <article class="card">
-
-          <div class="cardicon">
-            ◆
-          </div>
-
-          <div class="status">
-            ● EM BREVE
-          </div>
-
-          <h3>
-            Blox Fruits
-          </h3>
-
-          <p>
-            Novo script para Blox Fruits.
-            Em desenvolvimento.
-          </p>
-
-          <div class="card-bottom">
-
-            <span class="tag">
-              ROBLOX
-            </span>
-
-            <button class="btn disabled">
-              Em breve
-            </button>
+            </div>
 
           </div>
 
         </article>
 
-
-        <!-- SCRIPT 3 -->
-
-        <article class="card">
-
-          <div class="cardicon">
-            ◈
-          </div>
-
-          <div class="status">
-            ● EM BREVE
-          </div>
-
-          <h3>
-            Murder Mystery 2
-          </h3>
-
-          <p>
-            Script para Murder Mystery 2.
-            Em breve no Prisma Scripts.
-          </p>
-
-          <div class="card-bottom">
-
-            <span class="tag">
-              ROBLOX
-            </span>
-
-            <button class="btn disabled">
-              Em breve
-            </button>
-
-          </div>
-
-        </article>
-
-      </div>
-
-    </section>
+      </section>
 
 
-    <!-- EXECUTORES -->
+      <!-- UPDATES -->
+      <section id="updates" class="updates">
 
-    <section id="executores" class="feature">
-
-      <div class="feature-icon">
-        ⚡
-      </div>
-
-      <div>
-
-        <small>
-          PRISMA TOOLS
-        </small>
-
-        <h2>
-          Executores
-        </h2>
-
-        <p>
-          Escolha o executor compatível com
-          seu dispositivo.
-        </p>
-
-      </div>
-
-      <div class="executor-buttons">
-
-        <a
-          href="https://www.mediafire.com/file/pfn3jfumf35quib/Delta-2.735.1138.apk/file"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          📱 Mobile
-        </a>
-
-        <a
-          href="https://realexecutor.com/download.html"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          🖥️ PC
-        </a>
-
-      </div>
-
-    </section>
-
-
-    <!-- UPDATES -->
-
-    <section id="updates" class="updates">
-
-      <div class="heading">
-
-        <div>
-
-          <small>
-            PRISMA UPDATE
-          </small>
-
-          <h2>
-            Últimas novidades
-          </h2>
-
-        </div>
-
-      </div>
-
-
-      <div class="update-card">
-
-        <span>
-          ✦
+        <span class="section-label">
+          PRISMA UPDATES
         </span>
 
-        <div>
+        <h2>Novidades</h2>
 
-          <strong>
-            Prisma Scripts
-          </strong>
+        <p>
+          Novos scripts e ferramentas serão adicionados
+          em breve.
+        </p>
 
-          <p>
-            Nova interface da biblioteca chegando.
-          </p>
-
-        </div>
-
-        <time>
-          2026
-        </time>
-
-      </div>
+      </section>
 
     </section>
 
@@ -342,12 +191,14 @@
 
 
   <footer>
-    © <span id="year"></span> Prisma Scripts
+    <p>
+      © <span id="year"></span> Prisma Scripts.
+      Todos os direitos reservados.
+    </p>
   </footer>
 
 
   <script src="scripts.js"></script>
 
 </body>
-
 </html>
